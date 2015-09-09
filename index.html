@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  </head>
+  <body>
+  	<div ng-app="MyApp" style="background-color: #D5D5F5">
+		<div ng-controller="GameController">
+			<div> Hi! Welcome to node</div>
+		</div>
+  	</div>
+  	<script type="text/javascript">
+  		"use strict"
+  		var myApp = angular.module("MyApp", []);
+
+  		myApp.controller("GameController", function($scope, $timeout) {
+			$scope.message = "Initial message!";
+
+			$scope.$watch(function(theScope) {
+				console.log("Watch: checking for new value");
+				return theScope.message;
+			}, function(newValue, oldValue) {
+				console.log('watch : new =: ', newValue)
+				console.log('watch : old =: ', oldValue)
+			});
+			$timeout(function(){
+				$scope.message = 'New message!';
+			}, 2000);
+		});
+  	</script>
+  </body>
+</html>
